@@ -5,10 +5,10 @@
     "FuseJS"
   ],
   "Includes": [
-    "*",
-    "assets/fonts/FontAwesome.otf:Bundle",
+    "*"
   ],
   "Excludes": [
-    "js/"
+    "js/",
+    "node_modules/"
   ]
 }

@@ -1,0 +1,29 @@
+<App>
+  <JavaScript>
+    var Observable = require('FuseJS/Observable');
+    var pets = Observable(['Cat', 'Dog', 'Pig']);
+    var favPet = Observable('Pig');
+
+    favPet.onValueChanged(function(newValue) {
+      console.log('pet changed to', newValue);
+    })
+
+    var colors = Observable(['Red', 'Blue', 'Green']);
+    var favColor = Observable('Blue');
+
+    favColor.onValueChanged(function(newValue) {
+      console.log('color changed to', newValue);
+    })
+
+    module.exports = {
+      pets: pets,
+      favPet: favPet,
+      colors: colors,
+      favColor: favColor
+    }
+  </JavaScript>
+  <StackPanel>
+    <mr60fps.ComboBox Options="{pets}" Selected="{favPet}"/>
+    <mr60fps.ComboBox Options="{colors}" Selected="{favColor}" />
+  </StackPanel>
+</App>

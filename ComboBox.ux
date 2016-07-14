@@ -1,43 +1,73 @@
-<App>
-  <JavaScript File="dist/app.js" />
+<Panel ux:Class="mr60fps.ComboBox" Color="#ddd" Margin="10" Alignment="Top">
+  <Font ux:Global="FontAwesome" File="FontAwesome.otf" />
+  <Object ux:Property="Options" />
+  <Object ux:Property="Selected" />
   <JavaScript>
     var Observable = require('FuseJS/Observable');
-    var isOpen = Observable(true);
+
+    var self = this;
+
+
+    // var options = Observable(["Foo", "Bar", "Tar", "moo"])
+    var options = self.Options.inner();
+
+    // var selected = "moo";
+    var selected = self.Selected.inner();
+
+    var isOpen = Observable(false);
+
     module.exports = {
-      isOpen: isOpen
+      isOpen: isOpen,
+      options: options.map(function() {
+        return {
+          title: option,
+          isSelected: Observable(function() {
+            return selected.value === option;
+          }),
+          clicked: function() {
+            selected.value = option;
+            if (self.Selected.value instanceof Observable) {
+              self.Selected.value.value = option;
+            }
+            isOpen.value = false;
+          }
+        }
+      })
       toggleOpen: function() {
         isOpen.value = !isOpen.value;
       }
     }
   </JavaScript>
-  <Font ux:Global="FontAwesome" File="assets/fonts/FontAwesome.otf" />
-  <Panel ux:Name="combobox" Color="#ddd" Margin="10" Alignment="Top">
-    <Panel ux:Name="header">
-      <Text Margin="20" Alignment="CenterLeft">Item</Text>
-      <Text Value="&#xf0d7;" Font="FontAwesome" FontSize="26" Alignment="CenterRight" />
-      <WhilePressed>
-        <Change header.Color="#bbb" Duration="0.05" DurationBack="0.1"/> 
-      </WhilePressed>
-    </Panel>
-    <Panel Color="#eee" LayoutRole="Inert" Alignment="Top" MaxHeight="300">
-      <Translation RelativeTo="Size" RelativeNode="combobox" Y="1" />
-      <ScrollView>
-        <StackPanel ux:Name="dropdown" LayoutRole="Inert" Alignment="Top">
-          <Each Count="10">
-            <Panel Color="#eee">
-              <Text Margin="20">Option</Text>
-              <WhilePressed>
-                <Change item.Color="#ddd" Duration="0.05" DurationBack="0.1"/>
-              </WhilePressed>
-            </Panel>
-          </Each>
-        </StackPanel>
-      <ScrollView>
-      <WhileFalse Value="{isOpen}">
-          <Change dropdown.Opacity="0" Duration="0.15" Easing="CubicOut"/>
-          <Change dropdown.Visibility="Hidden" Delay="0.2"/>
-          <Move Y="-300" Duration="0.2" Easing="CubicIn" />
-      </WhileFalse>
-    </Panel>
+  <Panel ux:Name="header" Clicked="{toggleOpen}" HitTestMode="LocalBoundsAndChildren">
+    <Text Margin="20" Alignment="CenterLeft">Item</Text>
+    <Text Value="&#xf0d7;" Font="FontAwesome" FontSize="26" Alignment="CenterRight" />
+    <WhilePressed>
+      <Change header.Color="#bbb" Duration="0.05" DurationBack="0.1"/> 
+    </WhilePressed>
   </Panel>
-</App>
+  <Panel Color="#eee" LayoutRole="Inert" Alignment="Top" MaxHeight="300">
+    <Translation RelativeTo="Size" RelativeNode="this" Y="1" />
+    <ScrollView>
+      <StackPanel ux:Name="dropdown" LayoutRole="Inert" Alignment="Top">
+        <Each Items="{options}">
+          <Panel ux:Name="item" Color="#eee" Clicked="{clicked}">
+            <Each Count="1" TemplateSource="this" TemplateKey="item" />
+            <Text Margin="20" Value="{title}"/>
+            <WhilePressed>
+              <Change item.Color="#ddd" Duration="0.05" DurationBack="0.1"/>
+            </WhilePressed>
+            <WhileTrue Value="{isSelected}">
+              <Change item.Color="#ddf"/>
+            </WhileTrue>
+          </Panel>
+        </Each>
+      </StackPanel>
+    </ScrollView>
+    <WhileFalse Value="{isOpen}">
+        <Change dropdown.Opacity="0" Duration="0.15" Easing="CubicOut"/>
+        <Change dropdown.Visibility="Hidden" Delay="0.2"/>
+        <Move Y="-300" Duration="0.2" Easing="CubicIn" />
+    </WhileFalse>
+  </Panel>
+</Panel>
+
