@@ -6,11 +6,15 @@
       <Text Margin="20" Alignment="CenterLeft">Item</Text>
       <Text Value="&#xf0d7;" Font="FontAwesome" FontSize="26" Alignment="CenterRight" />
     </Panel>
-    <StackPanel ux:Name="dropdown" LayoutRole="Inert" Alignment="Top">
+    <Panel Color="#eee" LayoutRole="Inert" Alignment="Top" MaxHeight="300">
       <Translation RelativeTo="Size" RelativeNode="combobox" Y="1" />
-      <Each Count="10">
-        <Text>Option</Text>
-      </Each>
-    </StackPanel>
+      <ScrollView>
+        <StackPanel ux:Name="dropdown" LayoutRole="Inert" Alignment="Top">
+          <Each Count="10">
+            <Text Margin="20">Option</Text>
+          </Each>
+        </StackPanel>
+      <ScrollView>
+    </Panel>
   </Panel>
 </App>
