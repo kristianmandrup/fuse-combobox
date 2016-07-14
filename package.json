@@ -1,0 +1,22 @@
+{
+  "name": "combobox",
+  "version": "0.1.0",
+  "author": {
+    "name": "Kristian Mandrup",
+    "email": "kmandrup@gmail.com"
+  },
+  "description": "",
+  "scripts": {
+    "watch": "babel components -d dist/components -w"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.8.0",
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "gulp": "^3.9.1",
+    "rollup-plugin-babel": "^2.3.9",
+    "rollup-stream": "^1.4.1",
+    "vinyl-source-stream": "^1.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "vinyl-buffer": "^1.0.0"
+  }
+}

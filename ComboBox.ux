@@ -1,0 +1,16 @@
+<App>
+  <JavaScript File="dist/app.js" />
+  <Font ux:Global="FontAwesome" File="assets/fonts/FontAwesome.otf" />
+  <Panel ux:Name="combobox" Color="#ddd" Margin="10" Alignment="Top">
+    <Panel ux:Name="header">
+      <Text Margin="20" Alignment="CenterLeft">Item</Text>
+      <Text Value="&#xf0d7;" Font="FontAwesome" FontSize="26" Alignment="CenterRight" />
+    </Panel>
+    <StackPanel ux:Name="dropdown" LayoutRole="Inert" Alignment="Top">
+      <Translation RelativeTo="Size" RelativeNode="combobox" Y="1" />
+      <Each Count="10">
+        <Text>Option</Text>
+      </Each>
+    </StackPanel>
+  </Panel>
+</App>
