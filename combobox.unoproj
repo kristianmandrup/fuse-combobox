@@ -1,5 +1,5 @@
 {
-  "RootNamespace":"",
+  "RootNamespace": "",
   "Packages": [
     "Fuse",
     "FuseJS"
@@ -9,6 +9,15 @@
   ],
   "Excludes": [
     "js/",
-    "node_modules/"
-  ]
+    "node_modules/",
+    "fuse_modules/"
+  ],
+  "Projects": [
+    "fuse_modules/danmademe/fuse-fontawesome/danmademe_fontawesome_include.unoproj"
+  ],
+  "FusePM": {
+    "Dependencies": [
+      "https://github.com/danmademe/fuse-fontawesome"
+    ]
+  }
 }

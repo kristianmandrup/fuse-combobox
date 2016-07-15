@@ -1,12 +1,10 @@
 <Panel ux:Class="mr60fps.ComboBox" Color="#ddd" Margin="10" Alignment="Top">
-  <Font ux:Global="FontAwesome" File="FontAwesome.otf" />
   <Object ux:Property="Options" />
   <Object ux:Property="Selected" />
   <JavaScript>
     var Observable = require('FuseJS/Observable');
 
     var self = this;
-
 
     // var options = Observable(["Foo", "Bar", "Tar", "moo"])
     var options = self.Options.inner();
@@ -40,7 +38,7 @@
   </JavaScript>
   <Panel ux:Name="header" Clicked="{toggleOpen}" HitTestMode="LocalBoundsAndChildren">
     <Text Margin="20" Alignment="CenterLeft">Item</Text>
-    <Text Value="&#xf0d7;" Font="FontAwesome" FontSize="26" Alignment="CenterRight" />
+    <fa-caret-down FontSize="26" Alignment="CenterRight" />
     <WhilePressed>
       <Change header.Color="#bbb" Duration="0.05" DurationBack="0.1"/> 
     </WhilePressed>
