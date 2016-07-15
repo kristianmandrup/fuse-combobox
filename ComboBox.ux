@@ -5,21 +5,25 @@
     var Observable = require('FuseJS/Observable');
 
     var self = this;
+    // console.log('passed options', self.Options);
 
+    // var options = Observable("Foo", "Bar", "Tar", "moo")
+
+    // Alternative:
+    // Use options.value (ie. same as options.getAt(0))
     // var options = Observable(["Foo", "Bar", "Tar", "moo"])
-    console.log('my options', self.Options);
 
     var options = self.Options.inner();
 
-    var selected = "moo";
-    // var selected = self.Selected.inner();
+    // var selected = "moo";
+    var selected = self.Selected.inner();
 
     var isOpen = Observable(false);
 
     module.exports = {
       isOpen: isOpen,
       options: (options.value || options).map(function(option) {
-        console.log('option', option);
+        // console.log('option', option);
         return {
           title: option,
           isSelected: Observable(function() {
@@ -34,14 +38,15 @@
           }
         }
       }),
+      selected: selected,
       toggleOpen: function() {
         isOpen.value = !isOpen.value;
       }
     }
   </JavaScript>
   <Panel ux:Name="header" Clicked="{toggleOpen}" HitTestMode="LocalBoundsAndChildren">
-    <Text Margin="20" Alignment="CenterLeft">Item</Text>
-    <fa-caret-down FontSize="26" Alignment="CenterRight" />
+    <Text Margin="20" Alignment="CenterLeft" Value="{selected}"/>
+    <fa-caret-down FontSize="26" Alignment="CenterRight" Margin="20"/>
     <WhilePressed>
       <Change header.Color="#bbb" Duration="0.05" DurationBack="0.1"/> 
     </WhilePressed>

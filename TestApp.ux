@@ -5,14 +5,14 @@
     var favPet = Observable('Pig');
 
     favPet.onValueChanged(function(newValue) {
-      console.log('pet changed to', newValue);
+      // console.log('pet changed to', newValue);
     })
 
     var colors = Observable('Red', 'Blue', 'Green');
     var favColor = Observable('Blue');
 
     favColor.onValueChanged(function(newValue) {
-      console.log('color changed to', newValue);
+      // console.log('color changed to', newValue);
     })
 
     module.exports = {
@@ -23,7 +23,11 @@
     }
   </JavaScript>
   <StackPanel>
-    <mr60fps.ComboBox Options="{pets}" Selected="{favPet}"/>
+    <mr60fps.ComboBox Options="{pets}" Selected="{favPet}">
+      <Panel ux:Template="Option" Color="Red" Margin="4">
+        <Text Value="{title}" />
+      </Panel>
+    </mr60fps.ComboBox>
     <mr60fps.ComboBox Options="{colors}" Selected="{favColor}" />
   </StackPanel>
 </App>
