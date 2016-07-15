@@ -1,6 +1,6 @@
 <Panel ux:Class="mr60fps.ComboBox" Color="#ddd" Margin="10" Alignment="Top">
-  <Object ux:Property="Options" />
-  <Object ux:Property="Selected" />
+  <object ux:Property="Options" />
+  <object ux:Property="Selected" />
   <JavaScript>
     var Observable = require('FuseJS/Observable');
 
@@ -16,7 +16,7 @@
 
     module.exports = {
       isOpen: isOpen,
-      options: options.map(function() {
+      options: options.map(function(option) {
         return {
           title: option,
           isSelected: Observable(function() {
@@ -30,7 +30,7 @@
             isOpen.value = false;
           }
         }
-      })
+      }),
       toggleOpen: function() {
         isOpen.value = !isOpen.value;
       }
@@ -68,4 +68,3 @@
     </WhileFalse>
   </Panel>
 </Panel>
-
