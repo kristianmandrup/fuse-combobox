@@ -7,16 +7,19 @@
     var self = this;
 
     // var options = Observable(["Foo", "Bar", "Tar", "moo"])
+    console.log('my options', self.Options);
+
     var options = self.Options.inner();
 
-    // var selected = "moo";
-    var selected = self.Selected.inner();
+    var selected = "moo";
+    // var selected = self.Selected.inner();
 
     var isOpen = Observable(false);
 
     module.exports = {
       isOpen: isOpen,
-      options: options.map(function(option) {
+      options: (options.value || options).map(function(option) {
+        console.log('option', option);
         return {
           title: option,
           isSelected: Observable(function() {
