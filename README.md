@@ -1,4 +1,6 @@
 # Combobox demo
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/kristianmandrup/fuse-combobox.svg)](https://greenkeeper.io/)
 This [Fuse](https://www.fusetools.com/) project is configured with [Gulp](http://gulpjs.com/), [Rollup](http://rollupjs.org/) and [Babel](https://babeljs.io/) into your  workflow, allowing you to use ES2015+ features in your Fuse app.
 
 ### Demo
